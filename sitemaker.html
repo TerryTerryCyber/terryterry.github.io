@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body class="min-h-screen bg-gray-900 text-white flex flex-col">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-lg">
+    <div class="text-xl font-bold">MySite</div>
+    <div class="space-x-4">
+      <a href="index.html" class="hover:underline">Home</a>
+      <a href="about.html" class="hover:underline">About</a>
+      <a href="contactme.html" class="hover:underline">Contact</a>
+      <a href="sitemaker.html" class="hover:underline">Code Generator</a>
+    </div>
+  </nav>
+
+  <main class="flex-grow p-6 flex flex-col items-center animate-fade-in">
+    <h1 class="text-4xl font-bold mb-6 animate-slide-in">Code Generator</h1>
+
+    <textarea id="inputText" class="w-full max-w-xl p-4 bg-gray-800 border border-gray-700 rounded mb-4" rows="4" placeholder="Describe the code you want..."></textarea>
+
+    <button onclick="generateCode()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded mb-6 transition transform hover:scale-105">Generate Code</button>
+
+    <div class="w-full max-w-xl">
+      <h2 class="text-2xl font-semibold mb-2">Generated Code:</h2>
+      <pre id="outputCode" class="bg-gray-800 p-4 rounded border border-gray-700 overflow-x-auto"></pre>
+    </div>
+
+    <dialog id="apiKeyDialog" class="bg-gray-800 rounded-xl p-6 text-white w-full max-w-md border border-gray-700 animate-fade-in">
+      <h3 class="text-xl font-semibold mb-4">Enter Your Gemini API Key</h3>
+      <input type="password" id="apiKeyInput" class="w-full p-2 rounded bg-gray-900 border border-gray-600 mb-4" placeholder="AIza...">
+      <div class="flex justify-end gap-2">
+        <button onclick="saveApiKey()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-1 px-4 rounded">Save</button>
+        <button onclick="closeDialog()" class="bg-gray-600 hover:bg-gray-500 text-white font-semibold py-1 px-4 rounded">Cancel</button>
+      </div>
+    </dialog>
+
+    <button onclick="openDialog()" class="mt-8 text-sm underline">Set Gemini API Key</button>
+  </main>
+
+  <footer class="bg-gray-800 text-center p-4 text-sm">&copy; 2025 MySite. All rights reserved.</footer>
+
+  <style>
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slide-in {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 1s ease-out;
+    }
+
+    .animate-slide-in {
+      animation: slide-in 0.8s ease-out;
+    }
+  </style>
+
+  <script>
+    let apiKey = localStorage.getItem('gemini_api_key') || '';
+
+    function openDialog() {
+      document.getElementById('apiKeyDialog').showModal();
+    }
+
+    function closeDialog() {
+      document.getElementById('apiKeyDialog').close();
+    }
+
+    function saveApiKey() {
+      apiKey = document.getElementById('apiKeyInput').value;
+      localStorage.setItem('gemini_api_key', apiKey);
+      closeDialog();
+    }
+
+    async function generateCode() {
+      const input = document.getElementById('inputText').value;
+      const output = document.getElementById('outputCode');
+
+      if (!apiKey) {
+        output.textContent = "Please set your Gemini API key.";
+        return;
+      }
+
+      output.textContent = "Generating code...";
+
+      try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{ text: `Generate HTML code for: ${input}` }]
+            }]
+          })
+        });
+
+        const data = await response.json();
+        console.log("Gemini Response:", data);
+
+        if (response.ok && data.candidates && data.candidates.length > 0 && data.candidates[0].content.parts[0].text) {
+          output.textContent = data.candidates[0].content.parts[0].text.trim();
+        } else {
+          output.textContent = `Unexpected response: ${JSON.stringify(data)}`;
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        output.textContent = `Error: ${error.message}. Please check your API key and internet connection.`;
+      }
+    }
+  </script>
+</body>
+</html>
