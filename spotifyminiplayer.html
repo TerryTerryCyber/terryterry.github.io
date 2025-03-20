@@ -6,17 +6,18 @@
   <title>Spotify Mini Player</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body style="background-image: url('https://static.vecteezy.com/system/resources/previews/008/009/140/large_2x/black-wavy-folds-background-abstract-isometric-3d-illustration-free-photo.jpg');"></body>
-  <h1 class="text-3xl font-bold">Spotify Mini Player</h1>
+<body style="background-image: url('https://static.vecteezy.com/system/resources/previews/008/009/140/large_2x/black-wavy-folds-background-abstract-isometric-3d-illustration-free-photo.jpg');" class="h-screen flex flex-col justify-center items-center text-center">
+
+  <h1 class="text-3xl font-bold mb-6">Spotify Mini Player</h1>
 
   <!-- Access Token Input -->
-  <div class="w-full max-w-md">
+  <div class="w-full max-w-md mb-4">
     <label for="tokenInput" class="block text-sm font-medium text-gray-300 mb-1">Spotify Access Token</label>
     <input type="password" id="tokenInput" placeholder="Enter your token..." class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
   </div>
 
   <!-- Search Bar -->
-  <div class="w-full max-w-md">
+  <div class="w-full max-w-md mb-4">
     <input type="text" id="searchInput" placeholder="Search for a track..." class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
     <button id="searchBtn" class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded">Search</button>
   </div>
@@ -25,7 +26,7 @@
   <div id="searchResults" class="w-full max-w-md space-y-4 mt-4"></div>
 
   <!-- Mini Player -->
-  <div id="miniPlayer" class="bg-gray-800 p-6 rounded-lg shadow-lg w-96 hidden">
+  <div id="miniPlayer" class="bg-gray-800 p-6 rounded-lg shadow-lg w-96 hidden mt-6">
     <div class="flex items-center space-x-4">
       <img id="albumArt" src="" alt="Album Art" class="w-16 h-16 rounded"/>
       <div>

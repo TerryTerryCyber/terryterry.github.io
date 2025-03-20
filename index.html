@@ -6,7 +6,8 @@
   <title>About Me</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body style="background-image: url('https://static.vecteezy.com/system/resources/previews/008/009/140/large_2x/black-wavy-folds-background-abstract-isometric-3d-illustration-free-photo.jpg');"></body>
+<body style="background-image: url('https://static.vecteezy.com/system/resources/previews/008/009/140/large_2x/black-wavy-folds-background-abstract-isometric-3d-illustration-free-photo.jpg');" class="h-screen flex flex-col justify-center items-center text-center">
+
   <!-- Navigation Bar -->
   <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-lg w-full mb-6">
     <div class="text-xl font-bold">txryvxb3s</div>
@@ -24,31 +25,35 @@
     </div>
   </nav>
 
-  <h1 class="text-5xl font-bold mb-4">About Me</h1>
+  <main class="flex-grow flex flex-col items-center justify-center text-center">
+    <h1 class="text-5xl font-bold mb-4">About Me</h1>
 
-  <p class="text-lg max-w-2xl text-center mb-8">
-    Hey! I'm txryvxb3s, a passionate developer, designer, and all-around tech enthusiast. I love building creative projects, exploring new ideas, and pushing the boundaries of what's possible on the web.
-  </p>
+    <p class="text-lg max-w-2xl text-center mb-8">
+      Hey! I'm txryvxb3s, a passionate developer, designer, and all-around tech enthusiast. I love building creative projects, exploring new ideas, and pushing the boundaries of what's possible on the web.
+    </p>
 
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl mb-10">
-    <div class="bg-gray-700 p-4 rounded-xl shadow-md">
-      <h2 class="text-xl font-semibold mb-2">Skills</h2>
-      <p>JavaScript, React, CSS, Node.js, Python</p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl mb-10">
+      <div class="bg-gray-700 p-4 rounded-xl shadow-md">
+        <h2 class="text-xl font-semibold mb-2">Skills</h2>
+        <p>JavaScript, React, CSS, Node.js, Python</p>
+      </div>
+
+      <div class="bg-gray-700 p-4 rounded-xl shadow-md">
+        <h2 class="text-xl font-semibold mb-2">Hobbies</h2>
+        <p>Gaming, Music Production, AI Experiments</p>
+      </div>
+
+      <div class="bg-gray-700 p-4 rounded-xl shadow-md">
+        <h2 class="text-xl font-semibold mb-2">Projects</h2>
+        <p>Check out my GitHub for cool stuff!</p>
+      </div>
     </div>
 
-    <div class="bg-gray-700 p-4 rounded-xl shadow-md">
-      <h2 class="text-xl font-semibold mb-2">Hobbies</h2>
-      <p>Gaming, Music Production, AI Experiments</p>
+    <div class="flex gap-4">
+      <a href="contactme.html" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-xl">Contact Me</a>
     </div>
+  </main>
 
-    <div class="bg-gray-700 p-4 rounded-xl shadow-md">
-      <h2 class="text-xl font-semibold mb-2">Projects</h2>
-      <p>Check out my GitHub for cool stuff!</p>
-    </div>
-  </div>
-
-  <div class="flex gap-4">
-    <a href="contactme.html" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-xl">Contact Me</a>
-  </div>
+  <footer class="bg-gray-800 text-center p-4 text-sm w-full">&copy; 2025 txryvxb3s. All rights reserved.</footer>
 </body>
-</html><footer class="bg-gray-800 text-center p-4 text-sm">&copy; 2025 txryvxb3s. All rights reserved.</footer>
+</html>
