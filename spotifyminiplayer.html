@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spotify Mini Player</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-start p-6 space-y-6">
+  <h1 class="text-3xl font-bold">Spotify Mini Player</h1>
+
+  <!-- Access Token Input -->
+  <div class="w-full max-w-md">
+    <label for="tokenInput" class="block text-sm font-medium text-gray-300 mb-1">Spotify Access Token</label>
+    <input type="password" id="tokenInput" placeholder="Enter your token..." class="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="w-full max-w-md">
+    <input type="text" id="searchInput" placeholder="Search for a track..." class="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+    <button id="searchBtn" class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded">Search</button>
+  </div>
+
+  <!-- Search Results -->
+  <div id="searchResults" class="w-full max-w-md space-y-4 mt-4"></div>
+
+  <!-- Mini Player -->
+  <div id="miniPlayer" class="bg-gray-800 p-6 rounded-lg shadow-lg w-96 hidden">
+    <div class="flex items-center space-x-4">
+      <img id="albumArt" src="" alt="Album Art" class="w-16 h-16 rounded"/>
+      <div>
+        <p id="trackName" class="text-lg font-semibold">Track Name</p>
+        <p id="artistName" class="text-sm text-gray-400">Artist Name</p>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center mt-4">
+      <button id="playPauseBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+        Play
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const tokenInput = document.getElementById('tokenInput');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const searchResultsDiv = document.getElementById('searchResults');
+    const miniPlayer = document.getElementById('miniPlayer');
+    const trackName = document.getElementById('trackName');
+    const artistName = document.getElementById('artistName');
+    const albumArt = document.getElementById('albumArt');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+
+    let currentTrackUri = '';
+    let isPlaying = false;
+
+    searchBtn.addEventListener('click', async () => {
+      const query = searchInput.value.trim();
+      const token = tokenInput.value.trim();
+      if (!query || !token) {
+        alert('Please enter both a search query and access token.');
+        return;
+      }
+
+      searchResultsDiv.innerHTML = '<p class="text-gray-400">Searching...</p>';
+
+      try {
+        const res = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=5`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (data.tracks.items.length === 0) {
+          searchResultsDiv.innerHTML = '<p class="text-gray-400">No tracks found.</p>';
+          return;
+        }
+
+        searchResultsDiv.innerHTML = data.tracks.items.map(track => `
+          <div class="bg-gray-700 p-3 rounded cursor-pointer hover:bg-gray-600" data-uri="${track.uri}">
+            <p class="font-semibold">${track.name}</p>
+            <p class="text-sm text-gray-300">${track.artists.map(a => a.name).join(', ')}</p>
+          </div>
+        `).join('');
+
+        document.querySelectorAll('[data-uri]').forEach(el => {
+          el.addEventListener('click', () => {
+            currentTrackUri = el.getAttribute('data-uri');
+            displayTrackInfo(currentTrackUri, token);
+            miniPlayer.classList.remove('hidden');
+          });
+        });
+      } catch (err) {
+        searchResultsDiv.innerHTML = '<p class="text-red-400">Error fetching search results.</p>';
+        console.error(err);
+      }
+    });
+
+    async function displayTrackInfo(uri, token) {
+      try {
+        const trackId = uri.split(':')[2];
+        const res = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        trackName.textContent = data.name;
+        artistName.textContent = data.artists.map(a => a.name).join(', ');
+        albumArt.src = data.album.images[0].url;
+      } catch (err) {
+        console.error('Error fetching track info:', err);
+      }
+    }
+
+    playPauseBtn.addEventListener('click', async () => {
+      const token = tokenInput.value.trim();
+      if (!currentTrackUri || !token) return;
+
+      try {
+        if (!isPlaying) {
+          await fetch('https://api.spotify.com/v1/me/player/play', {
+            method: 'PUT',
+            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ uris: [currentTrackUri] })
+          });
+          playPauseBtn.textContent = 'Pause';
+        } else {
+          await fetch('https://api.spotify.com/v1/me/player/pause', {
+            method: 'PUT',
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          playPauseBtn.textContent = 'Play';
+        }
+        isPlaying = !isPlaying;
+      } catch (err) {
+        alert('Playback failed. Ensure Spotify is open on a device and your token has playback scope.');
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
