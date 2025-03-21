@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %{THE_REQUEST} /([^.]+)\.html(\?.*)? [NC]
+RewriteCond %{DOCUMENT_ROOT}/%1 -f
+RewriteRule ^ /%1 [R=301,L]
+# Check if the requested file with a .html extension exists
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [L]-f
+RewriteRule ^ %{REQUEST_URI}.html [L]
