@@ -1,2 +1,3 @@
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule !.*\.php$ %{REQUEST_FILENAME}.html [QSA,L]
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]

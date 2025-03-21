@@ -76,7 +76,7 @@ new Vue({
             name: "Jocelyn Flores",
             artist: "XXXtentacion",
             cover: "https://www.google.com/imgres?q=jocelyn%20flores&imgurl=https%3A%2F%2Ff4.bcbits.com%2Fimg%2Fa0490500391_65&imgrefurl=https%3A%2F%2Fincandescentsound.bandcamp.com%2Ftrack%2Fhold-on-enny-mae-jocelyn-flores-cover&docid=R2T03dyImjL0AM&tbnid=-mYpPP8-45XO8M&vet=12ahUKEwi-9fXt5ZmMAxVoMDQIHbPhJOYQM3oECF0QAA..i&w=700&h=700&hcb=2&ved=2ahUKEwi-9fXt5ZmMAxVoMDQIHbPhJOYQM3oECF0QAA",
-            source: "https://www.google.com/imgres?q=jocelyn%20flores&imgurl=https%3A%2F%2Ff4.bcbits.com%2Fimg%2Fa0490500391_65&imgrefurl=https%3A%2F%2Fincandescentsound.bandcamp.com%2Ftrack%2Fhold-on-enny-mae-jocelyn-flores-cover&docid=R2T03dyImjL0AM&tbnid=-mYpPP8-45XO8M&vet=12ahUKEwi-9fXt5ZmMAxVoMDQIHbPhJOYQM3oECF0QAA..i&w=700&h=700&hcb=2&ved=2ahUKEwi-9fXt5ZmMAxVoMDQIHbPhJOYQM3oECF0QAA",
+            source: "https://www.google.com/imgres?q=jocelyn%20flores&imgurl=https%3A%2F%2Ff4.bcbits.com%2Fimg%2Fa0490500391_65&imgrefurl=https%3A%2F%2Fincandescentsound.bandcamp.com%2Ftrack%2Fhold-on-enny-mae-jocelyn-flores-cover&docid=R2T03dyImjL0AM&tbnid=-mYpPP8-45XO8M&vet=12ahUKEwi-9fXt5ZmMAxVoMDQIHbPhJOYQM3oECF0QAA..i&w=700&h=700&hcb=2&ved=2ahUKEwi-9fXt5ZmMAxVoMDQIHbPhJOYQM3oECF0QAAx",
             url: "https://www.youtube.com/watch?v=FAucVNRx_mU",
             favorited: True
           },
