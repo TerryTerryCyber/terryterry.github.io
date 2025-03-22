@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alert Boxes</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<h1 class="text-center my-8">Alert Boxes</h1>
+
+<div class="flex flex-col items-center">
+  
+  <div class="my-4 w-full sm:w-1/2 md:w-1/3 bg-red-lightest border-l-4 border-red py-2 px-4">
+    <p class="font-bold">Alert</p>
+    <p>Something went wrong</p>
+  </div>
+  
+  <div class="my-4 w-full sm:w-1/2 md:w-1/3 bg-grey-light py-2 px-4 flex items-center rounded border-r-8 border-teal">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="h-6 w-6 text-teal mr-4"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"></path></svg>
+    <div>
+      <p class="font-bold">Info</p>
+      <p>Here is a message</p>
+    </div>
+  </div>
+  
+  <div class="my-4 w-full sm:w-1/2 md:w-1/3 bg-red-lightest py-2 px-4 rounded flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="h-6 w-6 text-red-dark mr-4"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"></path></svg>
+    <div>
+      <p class="font-bold">An error occurred</p>
+      <p>The developers are looking into it</p>
+    </div>
+  </div>
+  
+  <div class="my-4 w-full sm:w-1/2 md:w-1/3 bg-blue-light rounded-lg">
+    <p class="font-bold pt-2 px-4">Here is an option</p>
+    <p class="pb-1 px-4">Please select from the options below</p>
+    <div class="flex items-center text-center">
+      <div class="bg-blue-lightest hover:bg-blue-lighter flex-1 py-2 px-4 cursor-pointer">One</div>      
+      <div class="bg-blue-lightest hover:bg-blue-lighter flex-1 py-2 px-4 cursor-pointer">Two</div>
+      <div class="bg-blue-lightest hover:bg-blue-lighter flex-1 py-2 px-4 cursor-pointer">Three</div>
+    </div>
+  </div>
+  
+  <div class="my-4 bg-grey-dark sm:w-1/2 md:w-1/3 flex items-center rounded-lg py-2 px-2">
+    <img class="w-16 rounded-full m-1" src="https://pbs.twimg.com/profile_images/928848235761987584/rCxsPEFo_400x400.jpg" alt="">
+    <div class="flex flex-col ml-2">
+      <p class="font-bold text-white pb-1">Want to meet for lunch?</p>
+      <p class="text-sm text-grey-light">
+        Chris Perko at 11:17am
+      </p>
+    </div>
+  </div>
+  
+  <div class="my-4">
+    <a href="http://chrisperko.net" target="_blank" class="no-underline text-blue-light">ChrisPerko.NET</a>
+  </div>
+  
+</div>
+<link rel="stylesheet" href="box.css"
