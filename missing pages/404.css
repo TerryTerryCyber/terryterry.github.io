@@ -1,0 +1,126 @@
+@import url(https://fonts.bunny.net/css?family=abel:400) layer(demo);
+
+@layer reset demo;
+
+@layer demo {
+  body {
+    font-family: "Abel", sans-serif;
+    min-height: 100svh;
+    padding-block: 1rem;
+    display: grid;
+    place-items: center;
+    gap: 0rem;
+    background-image: url("https://picsum.photos/id/681/1200/800");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .wrapper {
+    --item-size: 8rem;
+    --duration: 2s;
+    --timing-function: cubic-bezier(0.66, 0, 0.34, 1);
+
+    width: min(100%, 500px);
+    position: relative;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 40% 60%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 40% 60%,
+      transparent
+    ); /* Added for Safari compatibility */
+  }
+
+  /* Items */
+  .wrapper > span {
+    --delay: calc(var(--i) * 100ms);
+    --translate: calc(var(--item-size) * 3);
+    --404-blur: 3px;
+    --404-clr: rgba(255, 255, 255, 0.25);
+
+    font-size: 12rem;
+    font-weight: 300;
+    display: grid;
+    place-content: center;
+
+    color: var(--404-clr);
+    filter: blur(var(--404-blur));
+
+    @media not (prefers-reduced-motion) {
+      animation-name: flip-transform, flip-translate;
+      animation-duration: var(--duration);
+      animation-timing-function: var(--timing-function);
+      animation-iteration-count: infinite;
+      animation-delay: var(--delay);
+    }
+
+    &:nth-child(1) {
+      --i: 1;
+    }
+    &:nth-child(2) {
+      --i: 2;
+    }
+    &:nth-child(3) {
+      --i: 3;
+    }
+  }
+
+  .wrapper > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    font-size: clamp(1rem, 2.5vw + 0.05rem, 1.4rem);
+    color: white;
+    text-transform: capitalize;
+    text-shadow: 0 0 2px black;
+    mix-blend-mode: difference;
+    text-wrap: balance;
+  }
+
+  @keyframes flip-transform {
+    50%,
+    100% {
+      transform: translateY(calc(var(--translate) * -1));
+    }
+  }
+
+  @keyframes flip-translate {
+    24.999999% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    25% {
+      opacity: 0;
+      transform: translate(0, var(--translate));
+    }
+    25.000001%,
+    100% {
+      opacity: 1;
+      transform: translate(0, var(--translate));
+    }
+  }
+}
+
+@layer reset {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
