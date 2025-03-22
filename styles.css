@@ -1,0 +1,35 @@
+/* Floating Dock Navigation Bar */
+.floating-dock {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(31, 41, 55, 0.9); /* Semi-transparent dark gray */
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .floating-dock a {
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .floating-dock a:hover {
+    color: #60a5fa; /* Light blue on hover */
+  }
+  
+  /* General Body Styling */
+  body {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/008/009/140/large_2x/black-wavy-folds-background-abstract-isometric-3d-illustration-free-photo.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+  
+  /* Footer Styling */
+  footer {
+    background-color: rgba(31, 41, 55, 0.9);
+    color: #d1d5db; /* Light gray */
+  }
