@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun Sites</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    .animate-bounce {
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-purple-500 to-blue-500 min-h-screen flex flex-col items-center justify-center text-white">
+
+  <!-- Title -->
+  <h1 class="text-4xl font-bold mb-8 animate-bounce">fun sites to see if bored / or you need code snippets</h1>
+
+  <!-- Buttons Section -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Button 1 -->
+    <a href="https://uiverse.io" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:scale-110 transition duration-300">
+      uiverse 
+    </a>
+
+    <!-- Button 2 -->
+    <a href="https://codepen.io" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg animate-bounce">
+      codepen
+    </a>
+
+    <!-- Button 3 -->
+    <a href="https://mrdoob.com" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:rotate-12 transition duration-300">
+      mrdoob
+    </a>
+
+    <!-- Button 4 -->
+    <a href="https://neal.fun" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:scale-125 transition duration-300">
+      neal.fun
+    </a>
+
+    <!-- Button 5 -->
+    <a href="https://chatgpt.com" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg animate-spin">
+      chatgpt
+    </a>
+
+    <!-- Button 6 -->
+    <a href="https://uiball.com" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:translate-x-4 transition duration-300">
+      uiball
+    </a>
+
+    <!-- Button 7 -->
+    <a href="https://learn-anything.xyz" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:skew-y-6 transition duration-300">
+      learn anything
+    </a>
+
+    <!-- Button 8 -->
+    <a href="https://bolt.new" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:scale-90 transition duration-300">
+      bolt.new
+    </a>
+
+    <!-- Button 9 -->
+    <a href="https://whatbeatsrock.com" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:rotate-180 transition duration-300">
+      what beats rock
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-12 text-sm text-gray-200">
+    &copy; 2025 txryvxb3s. All rights reserved.
+  </footer>
+</body>
+</html>
